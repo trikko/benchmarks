@@ -8,6 +8,7 @@ import core.stdc.stdlib;
 import core.thread;
 import djson;
 import std.compiler;
+import std.conv;
 import std.file;
 import std.format;
 import std.socket;
@@ -16,6 +17,17 @@ import std.stdio;
 struct Coordinate
 {
     double x = 0, y = 0, z = 0;
+
+    void toString(scope void delegate(const(char)[]) sink) const
+    {
+        sink("Coordinate {x: ");
+        sink(to!string(x));
+        sink(", y: ");
+        sink(to!string(y));
+        sink(", z: ");
+        sink(to!string(z));
+        sink("}");
+    }
 }
 
 void notify(string msg)
